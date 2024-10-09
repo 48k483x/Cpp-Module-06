@@ -24,11 +24,7 @@ ScalarConverter::~ScalarConverter()
 
 bool ScalarConverter::isChar(const std::string& str)
 {
-  if (str.length() != 1)
-    return false;
-
-  if (str[0] >= 32 && str[0] <= 126) return true;
-  else return false;
+  return str.length() == 1 && std::isprint(str[0]);
 }
 
 bool ScalarConverter::isInt(const std::string& str)
@@ -48,11 +44,13 @@ bool ScalarConverter::isFloat(const std::string& str)
   char *end;
   float val = strtof(str.c_str(), &end);
 
-  std::cout << "Val: " << val << std::endl;
-  std::cout << "End: " << end << std::endl;
-  std::cout << "Str: " << str << std::endl;
+  std::cout << "val: " << val << std::endl;
+  std::cout << "end: " << *end << std::endl;
+
 
   if (end == str.c_str())
+    return false;
+  if (*end == '\0')
     return false;
   if ((*end == 'f' || *end == 'F') && *(end + 1) != '\0')
     return false;
@@ -61,7 +59,40 @@ bool ScalarConverter::isFloat(const std::string& str)
   return true;
 }
 
-// void ScalarConverter::convert(const std::string& str)
-// {
+bool ScalarConverter::isDouble(const std::string& str)
+{
+  if (str == "-inf" || str == "+inf" || str == "inf" || str == "nan")
+    return true;
 
-// }
+  char *end;
+  double val = strtod(str.c_str(), &end);
+
+  if (end == str.c_str())
+    return false;
+  if (*end != '\0')
+    return false;
+  if (std::isinf(val) || std::isnan(val))
+    return false;
+  return true;
+}
+
+char ScalarConverter::convertToChar(const std::string& str, char errMssg[100])
+{
+  if (str.length() != 1)
+  {
+    strcpy(errMssg, "impossible");
+    return '\0';
+  }
+  char c = str[0];
+  if ((atoi(str.c_str()) >= 0 && atoi(str.c_str()) <= 9) || !std::isprint(c))
+  {
+    strcpy(errMssg, "Non displayable");
+    return '\0';
+  }
+  if (ScalarConverter::isChar(str))
+    return static_cast<char>(str[0]);
+  else return '\0';
+}
+
+
+

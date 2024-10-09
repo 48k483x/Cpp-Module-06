@@ -5,6 +5,7 @@
 # include <cmath>
 # include <climits>
 # include <cstdlib>
+# include <cstring>
 
 class ScalarConverter
 {
@@ -16,7 +17,7 @@ class ScalarConverter
     static bool isFloat(const std::string& str);
     static bool isDouble(const std::string& str);
 
-    static void convertToChar(const std::string& str);
+    static char convertToChar(const std::string& str, char errMssg[100]);
     static void convertToInt(const std::string& str);
     static void convertToFloat(const std::string& str);
     static void convertToDouble(const std::string& str);
