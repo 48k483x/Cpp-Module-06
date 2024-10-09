@@ -6,6 +6,7 @@
 # include <climits>
 # include <cstdlib>
 # include <cstring>
+# include <cstdlib>
 
 class ScalarConverter
 {
@@ -18,7 +19,7 @@ class ScalarConverter
     static bool isDouble(const std::string& str);
 
     static char convertToChar(const std::string& str, char errMssg[100]);
-    static void convertToInt(const std::string& str);
+    static int convertToInt(const std::string& str);
     static void convertToFloat(const std::string& str);
     static void convertToDouble(const std::string& str);
 

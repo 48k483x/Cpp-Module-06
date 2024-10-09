@@ -78,21 +78,15 @@ bool ScalarConverter::isDouble(const std::string& str)
 
 char ScalarConverter::convertToChar(const std::string& str, char errMssg[100])
 {
-  if (str.length() != 1)
-  {
-    strcpy(errMssg, "impossible");
-    return '\0';
-  }
-  char c = str[0];
-  if ((atoi(str.c_str()) >= 0 && atoi(str.c_str()) <= 9) || !std::isprint(c))
-  {
-    strcpy(errMssg, "Non displayable");
-    return '\0';
-  }
-  if (ScalarConverter::isChar(str))
-    return static_cast<char>(str[0]);
-  else return '\0';
+  
 }
 
+int ScalarConverter::convertToInt(const std::string& str)
+{
+  int ret;
+
+  if (ScalarConverter::isInt(str)) ret = strtol(str.c_str(), nullptr, 10);
+
+}
 
 

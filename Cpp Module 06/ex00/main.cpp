@@ -32,8 +32,8 @@ int main ( void )
 
   // Testing convertToChar
   char errMssg[100];
-  std::string c = "0";
-  std::string c1 = "a";
+  std::string c = "";
+  std::string c1 = ".";
   std::string c2 = "hello";
 
   if (ScalarConverter::convertToChar(c, errMssg) != 0)
