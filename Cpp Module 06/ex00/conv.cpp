@@ -100,12 +100,12 @@ void ScalarConverter::convertToChar(const std::string& str)
     std::cout << "Char: " << "Impossible" << std::endl;
     return;
   }
-    if (ScalarConverter::isChar(str))
+    /*if (ScalarConverter::isChar(str))
     {
       std::cout << "Char: " << str << std::endl;
       return;
     }
-
+*/
   char *end;
   int val = strtol(str.c_str(), &end, 10);
 
@@ -132,7 +132,7 @@ void ScalarConverter::convertToInt(const std::string& str)
 {
   if (ScalarConverter::isInt(str))
   {
-    int val = std::stoi(str);
+    int val = atoi(str.c_str());
     std::cout << "Int: " << val << std::endl;
   }
   else std::cout << "Int: " << "impossible" << std::endl;
