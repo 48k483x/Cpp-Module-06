@@ -25,7 +25,7 @@ ScalarConverter::~ScalarConverter()
 bool ScalarConverter::isChar(const std::string& str)
 {
   if (str.empty()) return false;
-  return str.length() == 1 && std::isprint(str[0]);
+  return str.length() == 1 && std::isprint(str[0]) && !std::isdigit(str[0]);
 }
 
 bool ScalarConverter::isInt(const std::string& str)
@@ -83,31 +83,22 @@ bool ScalarConverter::isDouble(const std::string& str)
   return true;
 }
 
-// bool ScalarConverter::isNumberForInt(const std::string& str)
-// {
-//   if (str.empty()) return false;
-
-//   char *end;
-//   long val = strtol(str.c_str(), &end, 10);
-
-//   return *end == '\0' && val <= INT_MAX && val >= INT_MIN;
-// }
-
 void ScalarConverter::convertToChar(const std::string& str)
 {
-  if (str.empty() || str.length() > 3)
+  if (str.empty())
   {
     std::cout << "Char: " << "Impossible" << std::endl;
     return;
   }
-    /*if (ScalarConverter::isChar(str))
+    if (ScalarConverter::isChar(str))
     {
       std::cout << "Char: " << str << std::endl;
       return;
     }
-*/
   char *end;
-  int val = strtol(str.c_str(), &end, 10);
+  float val1 = strtof(str.c_str(), &end);
+  int val = static_cast<int>(val1);
+  std::cout << "val: " << val << std::endl;
 
   if (*end != '\0')
   {

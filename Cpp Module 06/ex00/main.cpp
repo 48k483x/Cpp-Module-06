@@ -33,31 +33,31 @@ int main ( void )
   // Testing convertToChar
 
   {
-    // std::string a = "a";
-    // std::string b = "b";
-    // std::string c = "c";
-    // std::string d = "244";
-    // std::string e = "hello";
+    std::string a = "a";
+    std::string b = "b";
+    std::string c = "c";
+    std::string d = "244";
+    std::string e = "hello";
     std::string f = "0";
-    // std::string g = "0.0";
-    // std::string h = "0.0f";
-    // std::string i = "2004.4f";
-    // std::string j = "100.4";
-    // std::string k = "2147483647";
-    // std::string l = "42.0f";
+    std::string g = "0.0";
+    std::string h = "0.0f";
+    std::string i = "2004.4f";
+    std::string j = "100.4";
+    std::string k = "2147483647";
+    std::string l = "42.0f";
 
-    // ScalarConverter::convertToChar(a);
-    // ScalarConverter::convertToChar(b);
-    // ScalarConverter::convertToChar(c);
-    // ScalarConverter::convertToChar(d);
-    // ScalarConverter::convertToChar(e);
+    ScalarConverter::convertToChar(a); // a
+    ScalarConverter::convertToChar(b);  // b
+    ScalarConverter::convertToChar(c); // c
+    ScalarConverter::convertToChar(d);
+    ScalarConverter::convertToChar(e);
     ScalarConverter::convertToChar(f);
-    // ScalarConverter::convertToChar(g);
-    // ScalarConverter::convertToChar(h);
-    // ScalarConverter::convertToChar(i);
-    // ScalarConverter::convertToChar(j);
-    // ScalarConverter::convertToChar(k);
-    // ScalarConverter::convertToChar(l);
+    ScalarConverter::convertToChar(g);
+    ScalarConverter::convertToChar(h);
+    ScalarConverter::convertToChar(i);
+    ScalarConverter::convertToChar(j);
+    ScalarConverter::convertToChar(k);
+    ScalarConverter::convertToChar(l);
   }
 
   // Testing convertToInt
