@@ -1,7 +1,7 @@
 all: conv
 
 conv: *.cpp
-	c++ -Wall -Wextra -Werror -std=c++98 *.cpp -o conv
+	c++ -g  -Wall -Wextra -Werror -std=c++98 *.cpp -o conv
 
 clean:
 	rm -rf conv
