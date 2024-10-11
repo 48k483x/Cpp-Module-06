@@ -30,13 +30,14 @@ bool ScalarConverter::isChar(const std::string& str)
 
 bool ScalarConverter::isInt(const std::string& str)
 {
+
   if (str.empty()) return false;
   char *end;
 
 
   long val = strtol(str.c_str(), &end, 10);
-  std::cout << "val: " << val << std::endl;
-
+  if (*end == '.')
+    return false;
   return *end == '\0' && val <= INT_MAX && val >= INT_MIN;
 }
 
@@ -48,6 +49,8 @@ bool ScalarConverter::isFloat(const std::string& str)
 
   char *end;
   float val = strtof(str.c_str(), &end);
+  if (*end == '.')
+    return false;
 
   // std::cout << "val: " << val << std::endl;
   // std::cout << "end: " << *end << std::endl;
@@ -72,7 +75,8 @@ bool ScalarConverter::isDouble(const std::string& str)
 
   char *end;
   double val = strtod(str.c_str(), &end);
-  // std::cout << "val: " << val << std::endl;
+  if (*end == '.')
+    return false;
 
   if (end == str.c_str())
     return false;
@@ -90,6 +94,11 @@ void ScalarConverter::convertToChar(const std::string& str)
     std::cout << "Char: " << "Impossible" << std::endl;
     return;
   }
+  if (str == "nan" || str == "nanf" || str == "-inf" || str == "+inf" || str == "inf" || str == "-inff" || str == "+inff" || str == "inff")
+  {
+    std::cout << "Char: " << "Impossible" << std::endl;
+    return;
+  }
     if (ScalarConverter::isChar(str))
     {
       std::cout << "Char: " << str << std::endl;
@@ -97,14 +106,15 @@ void ScalarConverter::convertToChar(const std::string& str)
     }
   char *end;
   float val1 = strtof(str.c_str(), &end);
+  // std::cout << "val1: " << val1 << std::endl;
   int val = static_cast<int>(val1);
-  std::cout << "val: " << val << std::endl;
+  // std::cout << "val: " << val << std::endl;
 
-  if (*end != '\0')
-  {
-    std::cout << "Char: " << "Impossible" << std::endl;
+  if (*end != '\0' && (*end != 'f' || *(end + 1) != '\0') && (*end != 'F' || *(end + 1) != '\0'))
+{
+    std::cout << "Char: Impossible" << std::endl;
     return;
-  }
+}
 
   if ((val >= 0  && val <= 31) || val == 127)
   {
@@ -117,20 +127,64 @@ void ScalarConverter::convertToChar(const std::string& str)
     std::cout << "Char: " << static_cast<char>(val) << std::endl;
     return;
   }
+  std::cout << "Char: " << "Impossible" << std::endl;
 }
 
 void ScalarConverter::convertToInt(const std::string& str)
 {
+  if (str.empty())
+  {
+    std::cout << "Int: " << "impossible" << std::endl;
+    return;
+  }
+
   if (ScalarConverter::isInt(str))
   {
     int val = atoi(str.c_str());
     std::cout << "Int: " << val << std::endl;
+    return;
   }
-  else std::cout << "Int: " << "impossible" << std::endl;
+
+  if (str == "nan" || str == "nanf" || str == "-inf" || str == "+inf" || str == "inf" || str == "-inff" || str == "+inff" || str == "inff")
+  {
+    std::cout << "Int: " << "impossible" << std::endl;
+    return;
+  }
+  if (ScalarConverter::isFloat(str))
+  {
+    float val = strtof(str.c_str(), NULL);
+    std::cout << "Int: " << static_cast<int>(val) << std::endl;
+    return;
+  }
+
+  if (ScalarConverter::isDouble(str))
+  {
+    double val = strtod(str.c_str(), NULL);
+    std::cout << "Int: " << static_cast<int>(val) << std::endl;
+    return;
+  }
+  std::cout << "Int: " << "impossible" << std::endl;
 }
 
 void ScalarConverter::convertToFloat(const std::string& str)
 {
+  if (str.empty())
+  {
+    std::cout << "Float: " << "impossible" << std::endl;
+    return;
+  }
+  if (ScalarConverter::isDouble(str))
+  {
+    double val = strtod(str.c_str(), NULL);
+    std::cout << "Float: " << std::fixed << std::setprecision(1) << static_cast<float>(val) << "f" << std::endl;
+    return;
+  }
+  if (ScalarConverter::isInt(str))
+  {
+    int val = atoi(str.c_str());
+    std::cout << "Float: " << std::fixed << std::setprecision(1) << static_cast<float>(val) << "f" << std::endl;
+    return;
+  }
   if (ScalarConverter::isFloat(str))
   {
     float val = strtof(str.c_str(), NULL);
@@ -141,6 +195,23 @@ void ScalarConverter::convertToFloat(const std::string& str)
 
 void ScalarConverter::convertToDouble(const std::string& str)
 {
+  if (str.empty())
+  {
+    std::cout << "Double: " << "impossible" << std::endl;
+    return;
+  }
+  if (ScalarConverter::isInt(str))
+  {
+    int val = atoi(str.c_str());
+    std::cout << "Double: " << std::fixed << std::setprecision(1) << static_cast<double>(val) << std::endl;
+    return;
+  }
+  if (ScalarConverter::isFloat(str))
+  {
+    float val = strtof(str.c_str(), NULL);
+    std::cout << "Double: " << std::fixed << std::setprecision(1) << static_cast<double>(val) << std::endl;
+    return;
+  }
   if (ScalarConverter::isDouble(str))
   {
     double val = strtod(str.c_str(), NULL);
