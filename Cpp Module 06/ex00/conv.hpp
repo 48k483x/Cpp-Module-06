@@ -11,8 +11,9 @@
 
 class ScalarConverter
 {
-  public:  // don't forget to change to private after testing
+  private:  // don't forget to change to private after testing
     ScalarConverter();
+     ~ScalarConverter();
 
     static bool isChar(const std::string& str);
     static bool isInt(const std::string& str);
@@ -33,6 +34,5 @@ class ScalarConverter
     // Constructors
     ScalarConverter(const ScalarConverter&);
     ScalarConverter& operator=(const ScalarConverter&);
-    ~ScalarConverter();
 
 };
