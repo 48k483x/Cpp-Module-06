@@ -15,18 +15,20 @@ Base* generate(void)
         return new C;
 }
 
+// Uses dynamic_cast with pointers (returns nullptr if cast fails)
 void identify(Base* p)
 {
-  if (dynamic_cast<A*>(p))
+  if (dynamic_cast<A*>(p))  // Check if p can be cast to A*
     std::cout << "A" << std::endl;
-  else if (dynamic_cast<B*>(p))
+  else if (dynamic_cast<B*>(p)) // Check if p can be cast to B*
     std::cout << "B" << std::endl;
-  else if (dynamic_cast<C*>(p))
+  else if (dynamic_cast<C*>(p)) // Check if p can be cast to C*
     std::cout << "C" << std::endl;
   else
     std::cout << "Unknown" << std::endl;
 }
 
+// Uses dynamic_cast with references (throws exception if cast fails)
 void identify(Base& p)
 {
   try

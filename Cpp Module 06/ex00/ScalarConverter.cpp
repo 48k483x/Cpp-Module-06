@@ -47,16 +47,22 @@ bool ScalarConverter::isSpecialValue(const std::string& literal) {
 
 void ScalarConverter::handleSpecialValue(const std::string& literal) {
     if (literal == "nan" || literal == "nanf") {
-      std::cout << "Float: nanf" << std::endl;
-      std::cout << "Double: nan" << std::endl;
+      std::cout << "char: impossible" << std::endl;
+      std::cout << "int: impossible" << std::endl;
+      std::cout << "float: nanf" << std::endl;
+      std::cout << "double: nan" << std::endl;
     }
     else if (literal == "-inf" || literal == "-inff") {
-      std::cout << "Float: -inff" << std::endl;
-      std::cout << "Double: -inf" << std::endl;
+      std::cout << "char: impossible" << std::endl;
+      std::cout << "int: impossible" << std::endl;
+      std::cout << "float: -inff" << std::endl;
+      std::cout << "double: -inf" << std::endl;
     }
     else {
-      std::cout << "Float: +inff" << std::endl;
-      std::cout << "Double: +inf" << std::endl;
+      std::cout << "char: impossible" << std::endl;
+      std::cout << "int: impossible" << std::endl;
+      std::cout << "float: +inff" << std::endl;
+      std::cout << "double: +inf" << std::endl;
     }
 }
 
