@@ -23,7 +23,6 @@ class Serializer
 {
   private:
     Serializer();
-    ~Serializer();
 
   public:
     static uintptr_t serialize(Data* ptr);
@@ -32,4 +31,5 @@ class Serializer
     // Serialization Constructor
     Serializer(const Serializer&);
     Serializer& operator=(const Serializer&);
+    ~Serializer();
 };
