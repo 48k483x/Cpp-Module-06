@@ -1,4 +1,3 @@
-# 🗂 Project Structure
 
 ```
 cpp06/
@@ -27,11 +26,3 @@ cpp06/
     └── C.hpp
 
 ```
-
-# 🎯 Module Overview
-This module covers different types of casts in C++, including:
-
-* Static cast
-* Dynamic cast
-* Reinterpret cast
-* Const cast
